@@ -1,0 +1,26 @@
+/*Definitions*/
+
+
+/*Global Styles*/
+html {
+    box-sizing: border-box;
+}
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+body {
+  margin: 0 auto;
+  width: 80%;
+  font-family: 'Helvetica Neue';
+}
+
+/*Section Styles*/
+
+
+/*Header & Footer*/
+
+
+/*Media Queries*/
+    @media () {
+
+}
