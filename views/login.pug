@@ -1,0 +1,16 @@
+extends layout.pug
+
+block content
+  main(role="main")
+    section(class="grid")
+      div(class="grid12 padding05")
+        h2 Please sign in below
+        form(action="/users/login", method="post")
+          label Name
+          input(type="text", name="username")
+          label Password
+          input(type="password", name="password")
+          button(type="submit") Sign in
+          input(type='checkbox' class='remember' name='remember')
+          label(class='remember')
+            | Remember 24 Hours

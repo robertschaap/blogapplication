@@ -1,0 +1,14 @@
+extends layout.pug
+
+block content
+  main(role="main")
+    section#jumbo(class="templatebg jumbosmall")
+      h2(class="catheader")= category
+
+    section#articles(class="grid")
+      each entry in query
+        article(class="grid12 highlight")
+          a(href="/posts/"+entry.id)
+            div.cardinner
+                h2= entry.title
+                p #{entry.user.dataValues.firstName} #{entry.user.dataValues.lastName}

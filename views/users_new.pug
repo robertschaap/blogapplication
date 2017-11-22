@@ -1,0 +1,29 @@
+extends layout.pug
+
+block content
+  main(role="main")
+    section(class="grid")
+      div(class="grid12 padding05")
+        h2 Join us!
+        form(action="/users/new", method="post")
+          label First Name
+          input(type="text", name="firstname")
+          label Last Name
+          input(type="text", name="lastname")
+          label E-mail
+          input(type="text", name="email")
+          label User Name
+          input(type="text", name="username")
+          label Bio
+          textarea(type="text", name="bio")
+          label Avatar
+          input(type="text", name="avatar")
+          label Password
+          input(type="password", name="password")
+          label Confirm Password
+          input(type="password", name="confirmpassword")
+          label Question
+          input(type="text", name="resetquestion")
+          label Answer
+          input(type="text", name="resetanswer")
+          button(type="submit") Sign up

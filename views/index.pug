@@ -1,20 +1,45 @@
-doctype html
-html(lang="en")
-  head
-    meta(charset="utf-8")
-    title Blank Website
-    meta(name="viewport" content="width=device-width, initial-scale=1")
-    meta(name="author" content="Robert Schaap")
-    link(href="/css/normalize.css", rel="stylesheet", type="text/css")
-    link(href="/css/stylesheet.css", rel="stylesheet", type="text/css")
-    link(rel="appl-touch-icon" href="images/appl-touch-icon.png")
-    link(rel="icon" type="image/png" href="images/favicon.png" sizes="32x32")
-  body
-    header(role="heading")
-      nav(role="navigation")
-      h1
-    main(role="main")
-      section
-    footer(role="contentinfo")
-    //- script(src="https://code.jquery.com/jquery-3.2.1.js")
-    script(type="text/javascript", src="/scripts/javascript.js")
+extends layout.pug
+
+block content
+  main(role="main")
+    //- section#jumbo(class="templatebg")
+    section#articles(class="grid")
+
+      article(class="grid6 highlight")
+        a(href="/posts/"+query[0].id)
+          div.cardlarge.templatebg(style="background-image: url(/images/banners/"+query[0].id+".jpg);")
+          div.cardinner
+            h2= query[0].title
+            p #{query[0].user.dataValues.firstName} #{query[0].user.dataValues.lastName}
+      article(class="grid6 highlight")
+        a(href="/posts/"+query[1].id)
+          div.cardlarge.templatebg(style="background-image: url(/images/banners/"+query[1].id+".jpg);")
+          div.cardinner
+            h2= query[1].title
+            p #{query[1].user.dataValues.firstName} #{query[1].user.dataValues.lastName}
+
+      article(class="grid6 highlight")
+        a(href="/posts/"+query[2].id)
+          div.cardsmall.templatebg(style="background-image: url(/images/banners/"+query[2].id+".jpg);")
+          div.cardinner
+            h2= query[2].title
+            p #{query[2].user.dataValues.firstName} #{query[2].user.dataValues.lastName}
+      article(class="grid6 highlight")
+        a(href="/posts/"+query[3].id)
+          div.cardsmall.templatebg(style="background-image: url(/images/banners/"+query[3].id+".jpg);")
+          div.cardinner
+            h2= query[3].title
+            p #{query[3].user.dataValues.firstName} #{query[3].user.dataValues.lastName}
+
+
+
+      article(class="grid12 highlight")
+        a(href="/posts/"+query[4].id)
+          div.cardinner
+            h2= query[4].title
+            p #{query[4].user.dataValues.firstName} #{query[4].user.dataValues.lastName}
+      article(class="grid12 highlight")
+        a(href="/posts/"+query[5].id)
+          div.cardinner
+            h2= query[5].title
+            p #{query[5].user.dataValues.firstName} #{query[5].user.dataValues.lastName}

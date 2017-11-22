@@ -57,13 +57,13 @@ updated_at
 - \
 - \users [display all]
 - \users\new [create new]
+- \users\login
+- \users\logout
 - \users\:id [see one]
 - \posts [display all]
 - \posts\new [create new]
 - \posts\:id [see one]
-
-- \login
-- \logout
+- \comments\new
 
 ### Layout & Functionality
 - REST, MVC
