@@ -9,7 +9,6 @@
     - leave a comment on a post
 
 ## Database
-
 - create a database and keep track of files to create database with.
 - provide script for creation of database and csv import of table data.
 - try to implement the final version as a mini-app within the portfolio

@@ -5,7 +5,7 @@ block content
     section(class="grid")
       div(class="grid12 padding05")
         h2 Join us!
-        form(action="/users/new", method="post")
+        form(action="/users/new", enctype="multipart/form-data", method="post")
           label First Name
           input(type="text", name="firstname")
           label Last Name
@@ -17,7 +17,7 @@ block content
           label Bio
           textarea(type="text", name="bio")
           label Avatar
-          input(type="text", name="avatar")
+          input(type="file", accept=".jpg", name="avatar")
           label Password
           input(type="password", name="password")
           label Confirm Password
