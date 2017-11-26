@@ -9,7 +9,7 @@ router.use('/posts', require('./posts.js'));
 router.use('/comments', require('./comments.js'));
 
 router.get('/', (req, res) => {
-    model.Posts.allPosts().then(query => {
+    model.Posts.allPosts('All Posts').then(query => {
         res.render('index', {query: query })
     })
 });

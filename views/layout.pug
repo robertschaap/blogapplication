@@ -11,7 +11,6 @@ html(class='no-js' lang='en')
       link(href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Slab", rel="stylesheet")
       link(href="/css/normalize.css", rel="stylesheet", type="text/css")
       link(href="/css/stylesheet.css", rel="stylesheet", type="text/css")
-      link(rel="appl-touch-icon", href="images/appl-touch-icon.png")
       link(rel="icon", type="image/png", href="images/favicon.png", sizes="32x32")
 
   body
@@ -24,7 +23,7 @@ html(class='no-js' lang='en')
         #signinup
           if uuid
             a(href="/posts/new") +
-            //- a(href="") Me
+            a(href="/users/profile") Me
             a(href="/users/logout") Sign Out
           else
             a(href="/users/login") Sign In
@@ -33,10 +32,10 @@ html(class='no-js' lang='en')
       nav#sitenav(role="navigation")
         a(href="/") Home
         a(href="/posts?cat=All%20Posts") All Posts
-        //- a(href="/posts?cat=Technology") Technology
-        //- a(href="/posts?cat=Design") Design
-        //- a(href="/posts") Entrepreneur
-        //- a(href="/posts") Anything
+        a(href="/posts?cat=Technology") Technology
+        a(href="/posts?cat=Design") Design
+        a(href="/posts?cat=Entrepreneur") Entrepreneur
+        a(href="/posts?cat=Anything") Anything
 
     block content
 

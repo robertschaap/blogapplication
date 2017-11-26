@@ -1,0 +1,13 @@
+extends layout.pug
+
+block content
+  main(role="main")
+    section#jumbo
+    section#articles(class="grid")
+        article(class="grid12")
+          h2= profile.firstName + " " +profile.lastName
+          p= profile.bio
+          h3 Posts
+          each entry in posts
+            a(href="/posts/"+entry.id)
+              p= entry.title

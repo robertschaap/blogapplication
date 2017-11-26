@@ -8,7 +8,6 @@ module.exports = (sequelize) => {
             email: 'robert.schaap@mac.com',
             userName: 'RobertSchaap',
             bio: 'I do stuff with Nodejs and mostly stare at error messages',
-            avatar: 'avatar',
             password: 'p',
             passphrase: 'phrase',
             passresponse: 'response' })
@@ -16,7 +15,6 @@ module.exports = (sequelize) => {
             output.createPost({
                 title: 'Why CSS is not your worst nightmare',
                 body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque a est auctor dolor tincidunt bibendum eget a arcu. Mauris pellentesque vitae ligula hendrerit efficitur. Maecenas eget eleifend lorem, a ultricies ante. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam quis est metus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam consequat dignissim nunc. Curabitur blandit quam nulla, quis fermentum metus pulvinar sit amet.',
-                banner: 'blank',
                 tags: 'blank',
                 category: 'blank'
             })
@@ -26,21 +24,18 @@ module.exports = (sequelize) => {
             output.createPost({
                 title: 'All about CSS Grid',
                 body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque a est auctor dolor tincidunt bibendum eget a arcu. Mauris pellentesque vitae ligula hendrerit efficitur. Maecenas eget eleifend lorem, a ultricies ante. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam quis est metus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam consequat dignissim nunc. Curabitur blandit quam nulla, quis fermentum metus pulvinar sit amet.',
-                banner: 'blank',
                 tags: 'blank',
-                category: 'blank'
+                category: 'Technology'
             })
             output.createPost({
                 title: 'The strange property called Sticky',
                 body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque a est auctor dolor tincidunt bibendum eget a arcu. Mauris pellentesque vitae ligula hendrerit efficitur. Maecenas eget eleifend lorem, a ultricies ante. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam quis est metus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam consequat dignissim nunc. Curabitur blandit quam nulla, quis fermentum metus pulvinar sit amet.',
-                banner: 'blank',
                 tags: 'blank',
                 category: 'blank'
             })
             output.createPost({
                 title: 'Align Middle is missing and it\'s a problem',
                 body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque a est auctor dolor tincidunt bibendum eget a arcu. Mauris pellentesque vitae ligula hendrerit efficitur. Maecenas eget eleifend lorem, a ultricies ante. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam quis est metus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam consequat dignissim nunc. Curabitur blandit quam nulla, quis fermentum metus pulvinar sit amet.',
-                banner: 'blank',
                 tags: 'blank',
                 category: 'blank'
             })
@@ -50,9 +45,8 @@ module.exports = (sequelize) => {
             firstName: 'David',
             lastName: 'White',
             email: 'david.white@activision.com',
-            userName: 'RobertoSchapino',
+            userName: 'DavidWhite',
             bio: 'I was cloned to resemble somone else',
-            avatar: 'avatar',
             password: 'p',
             passphrase: 'phrase',
             passresponse: 'response' })
@@ -60,7 +54,6 @@ module.exports = (sequelize) => {
             output.createPost({
                 title: 'How I learned to love Floats',
                 body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque a est auctor dolor tincidunt bibendum eget a arcu. Mauris pellentesque vitae ligula hendrerit efficitur. Maecenas eget eleifend lorem, a ultricies ante. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam quis est metus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam consequat dignissim nunc. Curabitur blandit quam nulla, quis fermentum metus pulvinar sit amet.',
-                banner: 'blank',
                 tags: 'blank',
                 category: 'blank'
             })
@@ -70,7 +63,6 @@ module.exports = (sequelize) => {
             output.createPost({
                 title: 'Corporate Ipsum and 20 Other Amazing Ipsums',
                 body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque a est auctor dolor tincidunt bibendum eget a arcu. Mauris pellentesque vitae ligula hendrerit efficitur. Maecenas eget eleifend lorem, a ultricies ante. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam quis est metus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam consequat dignissim nunc. Curabitur blandit quam nulla, quis fermentum metus pulvinar sit amet.',
-                banner: 'blank',
                 tags: 'blank',
                 category: 'blank'
             })

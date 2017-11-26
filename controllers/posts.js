@@ -1,25 +1,40 @@
 // Declarations
 const express = require('express');
+const fs = require('fs');
 const router = express.Router();
 const model = require('../models');
 
-var multer  = require('multer');
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './public/images/avatars/')
-  },
-  filename: function (req, file, cb) {
-    if (file.mimetype === 'image/jpeg') {
-        cb(null, req.body.username+'.jpg')
+// File Upload
+const multer  = require('multer');
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, './public/images/banners/')
+    },
+    filename: (req, file, cb) => {
+        console.log(req.body)
+        console.log(req.session)
+
+        cb(null, req.session.uuid.userName+'.jpg');
     }
-    return
-  }
 })
-var upload = multer({ storage: storage }).single('avatar')
+const upload = multer({
+    storage: storage,
+    fileFilter: (req, file, cb) => {
+        model.Users.checkUserExists(req.body.username).then((result) => {
+            if(result) {
+                return cb(new Error())
+            } else if (file.mimetype !== 'image/jpeg') {
+                return cb(new Error())
+            } else {
+                return cb(null, true)
+            }
+        })
+    }
+}).single('banner')
 
 // Posts Routes
 router.get('/', (req, res) => {
-    model.Posts.allPosts()
+    model.Posts.allPosts(req.query.cat)
     .then(query => {
         res.render('posts_all', {
             query: query,
@@ -34,11 +49,25 @@ router.get('/new', (req, res) => {
         res.redirect('/users/login')
     }
 });
+
 router.post('/new', (req, res) => {
-    model.Posts.createPost(req.session, req.body).then((result) => {
-        res.redirect(`/posts/${result.dataValues.id}`)
+    upload(req, res, (err) =>{
+        if(err) {
+            res.send('error');
+        }
+        model.Posts.createPost(req.session, req.body).then((result) => {
+            console.log(result)
+            fs.rename(`./public/images/banners/${req.session.uuid.userName}.jpg`, `./public/images/banners/${result.id}.jpg`, (err) => {
+                if(err) {
+                    console.log(err);
+                }
+            })
+            res.redirect(`/posts/${result.dataValues.id}`)
+        })
     })
 });
+
+
 router.get('/:id', (req, res) => {
     model.Posts.onePost(req.params.id)
     .then(query => {

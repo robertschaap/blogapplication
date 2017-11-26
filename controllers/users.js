@@ -1,41 +1,64 @@
 // Declarations
 const express = require('express');
+const fs = require('fs');
 const router = express.Router();
 const model = require('../models');
 
-var multer  = require('multer');
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, './public/images/banners/')
-  },
-  filename: function (req, file, cb) {
-    if (file.mimetype === 'image/jpeg') {
-        cb(null, req.body.username+'.jpg')
+// File Upload
+const multer  = require('multer');
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, './public/images/avatars/')
+    },
+    filename: (req, file, cb) => {
+        console.log(req.body.username)
+        cb(null, req.body.username+'.jpg');
     }
-    return
-  }
 })
-var upload = multer({ storage: storage }).single('banner')
+const upload = multer({
+    storage: storage,
+    fileFilter: (req, file, cb) => {
+        model.Users.checkUserExists(req.body.username).then((result) => {
+            if(result) {
+                return cb(new Error())
+            } else if (file.mimetype !== 'image/jpeg') {
+                return cb(new Error())
+            } else {
+                return cb(null, true)
+            }
+        })
+    }
+}).single('avatar')
 
 // Users Routes
 router.get('/new', (req, res) => {
     res.render('users_new');
 });
+
 router.post('/new', (req, res) => {
-    model.Users.createUser(req.body).then((result) => {
-        upload(req, res, function(err) {
-            if (err) {
-                return
-            }
-        })
-        res.redirect('/')
+    upload(req, res, (err) => {
+        if(err) {
+            res.send('error');
+        }
+        model.Users.createUser(req.body).then((result) => {
+            fs.rename(`./public/images/avatars/${result.userName}.jpg`, `./public/images/avatars/${result.id}.jpg`, (err) => {
+                if(err) {
+                    console.log(err);
+                }
+            })
+            req.session.uuid = result;
+            res.locals.uuid = req.session.uuid;
+            return
+        }).then(result => res.redirect('/'))
     })
 });
 
 router.get('/login', (req, res) => {
     res.render('login');
 });
+
 router.post('/login', (req, res) => {
+    console.log(req);
     let username = req.body.username;
     let password = req.body.password;
 
@@ -60,10 +83,12 @@ router.get('/logout', (req, res) => {
     });
 });
 
-// setup parameter validation or this captures fucking everything
-router.get('/:id', (req, res) => {
-    model.Users.oneUser()
-    .then(query => res.render('users_one', {query: query }))
+// reroute unlogged users
+router.get('/profile', (req, res) => {
+    model.Users.profileUser(req.session.uuid.id)
+    .then(query => {
+        res.render('users_profile', { profile: query.profile, posts: query.posts })
+    })
 });
 
 module.exports = router;

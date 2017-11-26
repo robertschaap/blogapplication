@@ -5,13 +5,13 @@ block content
     section(class="grid")
       div(class="grid12 padding05")
         h2 Create something new
-        form(action="/posts/new", method="post")
+        form(action="/posts/new", enctype="multipart/form-data" method="post")
           label Title
           input(type="text", name="title")
           label Body
           textarea(type="text", name="body")
           label Image
-          input(type="text", name="banner")
+          input(type="file", accept=".jpg", name="banner")
           label Tags
           input(type="text", name="tags")
           label Category
