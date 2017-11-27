@@ -2,7 +2,7 @@ const model = require('../models');
 
 module.exports = (sequelize) => {
     sequelize.sync({ force: true }).then(() => {
-        model.Users.create({
+        model.Users.createUser({
             firstName: 'Robert',
             lastName: 'Schaap',
             email: 'robert.schaap@mac.com',
@@ -41,7 +41,7 @@ module.exports = (sequelize) => {
             })
         })
 
-        model.Users.create({
+        model.Users.createUser({
             firstName: 'David',
             lastName: 'White',
             email: 'david.white@activision.com',

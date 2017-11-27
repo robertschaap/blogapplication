@@ -11,7 +11,6 @@ const storage = multer.diskStorage({
         cb(null, './public/images/avatars/')
     },
     filename: (req, file, cb) => {
-        console.log(req.body.username)
         cb(null, req.body.username+'.jpg');
     }
 })
@@ -58,20 +57,21 @@ router.get('/login', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
-    console.log(req);
-    let username = req.body.username;
+    let username = req.body.userName;
     let password = req.body.password;
 
     model.Users.loginUser(username, password).then((result) => {
-        if (!result) {
-            res.redirect('login?message=Wrong%20username%20or%20password');
-        } else {
+        console.log('this is line 64-control' + result)
+        if (result) {
+            console.log('setting session')
             req.session.uuid = result;
             res.locals.uuid = req.session.uuid;
 
             if (req.body.remember === 'on') {
                 req.session.cookie.maxAge = 24 * 60 * 60000;
             }
+            return
+        } else {
             return
         }
     }).then(result => res.redirect('/'))

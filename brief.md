@@ -1,3 +1,7 @@
+# To Do List 26-11
+- Implement password encryption
+- Data validation
+- Form validation
 
 # Project Brief
 

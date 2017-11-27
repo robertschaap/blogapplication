@@ -22,6 +22,42 @@ module.exports = (sequelize, DataTypes) => {
         })
     }
 
+    Users.createUser = (signupDetails) => {
+        return bcrypt.hash(signupDetails.password, 8).then((hash) => {
+            return Users.create({
+                firstName: signupDetails.firstName,
+                lastName: signupDetails.lastName,
+                email: signupDetails.email,
+                userName: signupDetails.userName,
+                bio: signupDetails.bio,
+                password: hash,
+                passphrase: signupDetails.passphrase,
+                passresponse: signupDetails.passresponse
+            })
+        });
+    }
+
+    Users.checkPassword = (password, hash) => {
+        return bcrypt.compare(password, hash).then((res) => {
+            return res
+        })
+    }
+
+    Users.loginUser = (userName, password) => {
+        return Users.findOne({
+            where: { userName }
+        }).then((result) => {
+
+            return Users.checkPassword(password, result.dataValues.password).then((res) => {
+                if (res) {
+                    return result
+                } else {
+                    return res
+                }
+            })
+        })
+    }
+
     Users.profileUser = (id) => {
         return Users.findOne({
             where: { id },
@@ -32,29 +68,6 @@ module.exports = (sequelize, DataTypes) => {
                 posts: result.dataValues.posts.map(i => i.dataValues)
             }
             return profileInfo;
-        })
-    }
-
-    Users.loginUser = (userName, password) => {
-        return Users.findOne({
-            where: { userName }
-        }).then((result) => {
-            if ( result && password === result.password) {
-                return result
-            }
-        })
-     }
-
-    Users.createUser = (signupDetails) => {
-        return Users.create({
-            firstName: signupDetails.firstname,
-            lastName: signupDetails.lastname,
-            email: signupDetails.email,
-            userName: signupDetails.username,
-            bio: signupDetails.bio,
-            password: signupDetails.password,
-            passphrase: signupDetails.resetquestion,
-            passresponse: signupDetails.resetanswer
         })
     }
 
