@@ -39,7 +39,7 @@ block content
           h3.com_header Add Comment
           if uuid
             form(action="/comments/new/"+postBody.id method="post")
-              input(type="text", name="comment")
+              input(type="text", name="comment" required)
               button(type="submit") Submit
           else
             p Please sign in to comment

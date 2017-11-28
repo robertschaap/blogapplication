@@ -59,12 +59,15 @@ p {
 }
 
 /*Form Styles */
-input, label, textarea {
+input, label, textarea, select {
   display: block;
   width: 50%;
 }
 input, textarea {
   border: 1px solid #eee;
+}
+select {
+  background-color: white;
 }
 label {
   margin-top: 1rem;

@@ -7,23 +7,21 @@ block content
         h2 Join us!
         form(action="/users/new", enctype="multipart/form-data", method="post")
           label First Name
-          input(type="text", name="firstName")
+          input(type="text", name="firstName" )
           label Last Name
-          input(type="text", name="lastName")
+          input(type="text", name="lastName" )
           label E-mail
-          input(type="text", name="email")
+          input(type="text", name="email" )
           label User Name
-          input(type="text", name="userName")
+          input(type="text", name="userName" )
           label Bio
-          textarea(type="text", name="bio")
+          textarea(type="text", name="bio" )
           label Avatar
-          input(type="file", accept=".jpg", name="avatar")
+          input(type="file", accept=".jpg", name="avatar" )
           label Password
-          input(type="password", name="password")
-          label Confirm Password
-          input(type="password", name="confirmpassword")
-          label Question
-          input(type="text", name="passphrase")
-          label Answer
-          input(type="text", name="passresponse")
+          input(type="password", name="password" )
+          //- label Question
+          //- input(type="text", name="passphrase" )
+          //- label Answer
+          //- input(type="text", name="passresponse" )
           button(type="submit") Sign up

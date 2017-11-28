@@ -2,7 +2,9 @@ extends layout.pug
 
 block content
   main(role="main")
-    section#jumbo
+    section#jumbo(class="templatebg jumbosmall")
+      h2(class="catheader")=profile.firstName
+
     section#articles(class="grid")
         article(class="grid12")
           h2= profile.firstName + " " +profile.lastName

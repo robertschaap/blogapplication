@@ -7,14 +7,18 @@ block content
         h2 Create something new
         form(action="/posts/new", enctype="multipart/form-data" method="post")
           label Title
-          input(type="text", name="title")
+          input(type="text", name="title" required)
           label Body
-          textarea(type="text", name="body")
+          textarea(type="text", name="body" required)
           label Image
-          input(type="file", accept=".jpg", name="banner")
-          label Tags
-          input(type="text", name="tags")
+          input(type="file", accept=".jpg", name="banner" required)
+          //- label Tags
+          //- input(type="text", name="tags")
           label Category
-          input(type="text", name="category")
+          select(type="text", name="category" required)
+            option(value="Technology") Technology
+            option(value="Design") Design
+            option(value="Entrepreneur") Entrepreneur
+            option(value="Anything") Anything
           button(type="submit") Post
 
