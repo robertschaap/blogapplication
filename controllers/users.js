@@ -58,7 +58,7 @@ router.post('/new', (req, res) => {
 });
 
 router.get('/login', (req, res) => {
-    res.render('login');
+    res.render('login', { message: req.query.message });
 });
 
 router.post('/login', (req, res) => {

@@ -5,11 +5,14 @@ block content
     section(class="grid")
       div(class="grid12 padding05")
         h2 Please sign in below
+        if message
+          p #{message}: Please check your input
+
         form(action="/users/login", method="post")
           label Username
-          input(type="text", name="userName")
+          input(type="text", name="userName" required)
           label Password
-          input(type="password", name="password")
+          input(type="password", name="password" required)
           button(type="submit") Sign in
           input(type='checkbox' class='remember' name='remember')
           label(class='remember')

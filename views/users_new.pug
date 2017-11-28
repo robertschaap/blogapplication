@@ -7,21 +7,37 @@ block content
         h2 Join us!
         form(action="/users/new", enctype="multipart/form-data", method="post")
           label First Name
-          input(type="text", name="firstName" )
+          input(type="text", name="firstName" required)
           label Last Name
-          input(type="text", name="lastName" )
+          input(type="text", name="lastName" required)
           label E-mail
-          input(type="text", name="email" )
+          input(type="text", name="email" required)
           label User Name
-          input(type="text", name="userName" )
+          input(type="text", name="userName" required)
           label Bio
-          textarea(type="text", name="bio" )
-          label Avatar
-          input(type="file", accept=".jpg", name="avatar" )
+          textarea(type="text", name="bio" required)
+          label Avatar (JPEG only)
+          input(type="file", accept=".jpg", name="avatar")
           label Password
-          input(type="password", name="password" )
+          input(type="password", name="password" id="password" required)
+          label Confirm Password
+          input(type="password" oninput="check(this)" required)
           //- label Question
-          //- input(type="text", name="passphrase" )
+          //- input(type="text", name="passphrase" required)
           //- label Answer
-          //- input(type="text", name="passresponse" )
+          //- input(type="text", name="passresponse" required)
           button(type="submit") Sign up
+
+          script(language='javascript' type='text/javascript').
+            function check(input) {
+              if (input.value != document.getElementById('password').value) {
+                console.log('2')
+                input.setCustomValidity('Please make sure your passwords match.');
+                input.reportValidity();
+              } else {
+                console.log('3')
+                input.setCustomValidity('');
+              }
+            }
+
+
