@@ -21,10 +21,6 @@ Comments.belongsTo(Users);
 Posts.hasMany(Comments);
 Comments.belongsTo(Posts);
 
-// Functions
-function makeMap(obj) {
-    return obj.map(i => i.dataValues);
-}
 
 // Exports
 exports.sequelize = sequelize;

@@ -5,6 +5,8 @@ block content
     section(class="grid")
       div(class="grid12 padding05")
         h2 Join us!
+        if message
+          p #{message}: Please check your input
         form(action="/users/new", enctype="multipart/form-data", method="post")
           label First Name
           input(type="text", name="firstName" required)
@@ -17,15 +19,11 @@ block content
           label Bio
           textarea(type="text", name="bio" required)
           label Avatar (JPEG only)
-          input(type="file", accept=".jpg", name="avatar")
+          input(type="file", accept=".jpg", name="avatar" required)
           label Password
           input(type="password", name="password" id="password" required)
           label Confirm Password
           input(type="password" oninput="check(this)" required)
-          //- label Question
-          //- input(type="text", name="passphrase" required)
-          //- label Answer
-          //- input(type="text", name="passresponse" required)
           button(type="submit") Sign up
 
           script(language='javascript' type='text/javascript').

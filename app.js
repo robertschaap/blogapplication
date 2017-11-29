@@ -5,12 +5,11 @@ const myport = process.env.PORT || 3000;
 
 // Dependencies
 const bodyParser = require('body-parser');
-const bcrypt = require('bcrypt');
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-// Models
+// Models & Session Store
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const model = require('./models');
@@ -26,11 +25,14 @@ app.use(session({
     resave: false,
 }));
 
+// Check If Session
 app.use((req, res, next) => {
     if(req.session.uuid) {
-        res.locals.uuid = req.session.uuid;
+        res.locals.uuid = true;
+        next();
+    } else {
+        next();
     }
-    next();
 });
 
 // Views

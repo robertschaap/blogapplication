@@ -1,6 +1,6 @@
 const model = require('../models');
 
-module.exports = (sequelize) => {
+module.exports = ( sequelize ) => {
     sequelize.sync({ force: true }).then(() => {
         model.Users.createUser({
             firstName: 'Robert',
@@ -8,10 +8,8 @@ module.exports = (sequelize) => {
             email: 'robert.schaap@mac.com',
             userName: 'RobertSchaap',
             bio: 'I do stuff with Nodejs and mostly stare at error messages',
-            password: 'robertschaap',
-            passphrase: 'Apples',
-            passresponse: 'Oranges' })
-        .then(output => {
+            password: 'robertschaap' })
+        .then((output) => {
             output.createPost({
                 title: 'Why CSS is not your worst nightmare',
                 body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque a est auctor dolor tincidunt bibendum eget a arcu. Mauris pellentesque vitae ligula hendrerit efficitur. Maecenas eget eleifend lorem, a ultricies ante. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam quis est metus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam consequat dignissim nunc. Curabitur blandit quam nulla, quis fermentum metus pulvinar sit amet.',
@@ -50,10 +48,8 @@ module.exports = (sequelize) => {
             email: 'david.white@gmail.com',
             userName: 'DavidWhite',
             bio: 'I was cloned to resemble somone else',
-            password: 'davidwhite',
-            passphrase: 'Apples',
-            passresponse: 'Oranges' })
-        .then(output => {
+            password: 'davidwhite' })
+        .then((output) => {
             output.createPost({
                 title: 'How I learned to love Floats',
                 body: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque a est auctor dolor tincidunt bibendum eget a arcu. Mauris pellentesque vitae ligula hendrerit efficitur. Maecenas eget eleifend lorem, a ultricies ante. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam quis est metus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aliquam consequat dignissim nunc. Curabitur blandit quam nulla, quis fermentum metus pulvinar sit amet.',

@@ -1,6 +1,8 @@
 // Declarations
 const express = require('express');
 const fs = require('fs');
+const validate = require('validate.js');
+
 const router = express.Router();
 const model = require('../models');
 
@@ -11,20 +13,19 @@ const storage = multer.diskStorage({
         cb(null, './public/images/avatars/')
     },
     filename: (req, file, cb) => {
-        console.log(req.body)
         cb(null, req.body.userName+'.jpg');
     }
 })
 const upload = multer({
     storage: storage,
     fileFilter: (req, file, cb) => {
-        model.Users.checkUserExists(req.body.userName).then((result) => {
+        model.Users.checkUserExists( req.body.userName ).then((result) => {
             if(result) {
-                return cb(new Error())
+                return cb(new Error());
             } else if (file.mimetype !== 'image/jpeg') {
-                return cb(new Error())
+                return cb(new Error());
             } else {
-                return cb(null, true)
+                return cb(null, true);
             }
         })
     }
@@ -32,28 +33,44 @@ const upload = multer({
 
 // Users Routes
 router.get('/new', (req, res) => {
-    res.render('users_new');
+    res.render('users_new', { message: req.query.message });
 });
 
 router.post('/new', (req, res) => {
     upload(req, res, (err) => {
         if(err) {
-            console.log('this is the error:')
-            console.log(err)
-            return
+            res.redirect('./new?message=Error')
         } else {
-
-        }
-        model.Users.createUser(req.body).then((result) => {
-            fs.rename(`./public/images/avatars/${result.userName}.jpg`, `./public/images/avatars/${result.id}.jpg`, (err) => {
-                if(err) {
-                    console.log(err);
-                }
+            let validationResult = validate( {
+                firstname: req.body.firstName,
+                lastname: req.body.lastName,
+                email: req.body.email,
+                username: req.body.userName,
+                bio: req.body.bio,
+                password: req.body.password
+            }, {
+                firstname: { presence: {allowEmpty: false} },
+                lastname: { presence: {allowEmpty: false} },
+                email: { presence: {allowEmpty: false} },
+                username: { presence: {allowEmpty: false} },
+                bio: { presence: {allowEmpty: false} },
+                password: { presence: {allowEmpty: false} }
             })
-            req.session.uuid = result;
-            res.locals.uuid = req.session.uuid;
-            return
-        }).then(result => res.redirect('/'))
+            if ( validationResult ) {
+                res.redirect('./new?message=Error')
+            } else {
+                model.Users.createUser(req.body).then((result) => {
+                    fs.rename(`./public/images/avatars/${result.userName}.jpg`, `./public/images/avatars/${result.id}.jpg`, (err) => {
+                        if(err) {
+                            console.log(err);
+                        }
+                    })
+                    req.session.uuid = result;
+                    return
+                }).then((result) => {
+                    res.redirect('/') });
+            }
+        }
     })
 });
 
@@ -62,25 +79,29 @@ router.get('/login', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
-    if (req.body.userName && req.body.password){
-        let username = req.body.userName;
-        let password = req.body.password;
+    let validationResult = validate( {
+        username: req.body.userName,
+        password: req.body.password
+    }, {
+        username: { presence: {allowEmpty: false} },
+        password: { presence: {allowEmpty: false} }
+    })
 
-        model.Users.loginUser(username, password).then((result) => {
+    if( validationResult ) {
+        res.redirect('./login?message=Error');
+    } else {
+        model.Users.loginUser(req.body.userName, req.body.password).then((result) => {
             if (result) {
                 req.session.uuid = result;
-                res.locals.uuid = req.session.uuid;
 
                 if (req.body.remember === 'on') {
                     req.session.cookie.maxAge = 24 * 60 * 60000;
                 }
-                res.redirect('/')
+                res.redirect('/');
             } else {
-                res.redirect('./login?message=Error')
+                res.redirect('./login?message=Error');
             }
         })
-    } else {
-        res.redirect('./login?message=Error');
     }
 });
 
@@ -93,7 +114,7 @@ router.get('/logout', (req, res) => {
 router.get('/profile', (req, res) => {
     model.Users.profileUser(req.session.uuid.id)
     .then(query => {
-        res.render('users_profile', { profile: query.profile, posts: query.posts })
+        res.render('users_profile', { profile: query.profile, posts: query.posts });
     })
 });
 

@@ -1,6 +1,6 @@
 const model = require('../models');
 
-module.exports = (sequelize, DataTypes) => {
+module.exports = ( sequelize, DataTypes ) => {
 
     const Posts = sequelize.define('posts', {
         title: DataTypes.TEXT,
@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
         category: DataTypes.TEXT
     });
 
-    Posts.allPosts = (category) => {
+    Posts.allPosts = ( category ) => {
         if (category === 'All Posts') {
             return Posts.findAll({
                 order: [[ 'createdAt', 'desc']],
@@ -24,7 +24,8 @@ module.exports = (sequelize, DataTypes) => {
             })
         }
     }
-    Posts.onePost = (id) => {
+
+    Posts.onePost = ( id ) => {
         return Promise.all([
             Posts.findOne({
                 where: { id },
@@ -37,7 +38,7 @@ module.exports = (sequelize, DataTypes) => {
         ]);
     }
 
-    Posts.createPost = (session, postDetails) => {
+    Posts.createPost = ( session, postDetails ) => {
         return Posts.create({
             title: postDetails.title,
             body: postDetails.body,

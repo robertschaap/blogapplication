@@ -28,11 +28,6 @@ username varchar(30) unique
 bio varchar(100)
 avatar text
 password (enc)
-passphrase (text)
-passresponse (text)
-likedposts (json) (postId)
-likedcomment (json) (commentId)
-bookmarks (json) (postId)
 
 posts
 -----
@@ -59,7 +54,6 @@ updated_at
 ## Site Design
 ### Routes
 - \
-- \users [display all]
 - \users\new [create new]
 - \users\login
 - \users\logout
