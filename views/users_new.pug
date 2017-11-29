@@ -20,8 +20,8 @@ block content
           textarea(type="text", name="bio" required)
           label Avatar (JPEG only)
           input(type="file", accept=".jpg", name="avatar" required)
-          label Password
-          input(type="password", name="password" id="password" required)
+          label Password (Minimum 8 Characters)
+          input(type="password", name="password" minlength="8" id="password" required)
           label Confirm Password
           input(type="password" oninput="check(this)" required)
           button(type="submit") Sign up
