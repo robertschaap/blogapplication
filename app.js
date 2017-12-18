@@ -5,9 +5,7 @@ const myport = process.env.PORT || 3000;
 
 // Dependencies
 const bodyParser = require('body-parser');
-
 app.use(bodyParser.urlencoded({ extended: true }));
-
 
 // Models & Session Store
 const session = require('express-session');
@@ -41,7 +39,6 @@ app.use(express.static('public'));
 
 // Controllers
 app.use(require('./controllers'));
-
 
 app.listen(myport, () =>
     console.log(`Now listening on port ${myport}`)
