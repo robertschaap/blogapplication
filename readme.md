@@ -2,7 +2,7 @@
 A blog application where users can signup, post and read as well as comment on posts.
 
 ##### Technologies
-HTML5 | CSS3 | JavaScript | Node.js | Express | Pug | PostgreSQL | Sequelize
+HTML5 | CSS3 | JavaScript | Node.js | Express | Pug | PostgreSQL | Sequelize    
 Express-Session | Connect-Session-Sequelize | Body-Parser | BCrypt | Validatejs
 
 ### Scope
