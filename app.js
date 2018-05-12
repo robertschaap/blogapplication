@@ -13,24 +13,24 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const model = require('./models');
 
 app.use(session({
-    store: new SequelizeStore({
-        db: model.sequelize,
-        checkExpirationInterval: 15 * 60000,
-        expiration: 60 * 60000
-    }),
-    secret: '38-38-40-40-37-39-37-39-66-65-13',
-    saveUninitialized: false,
-    resave: false,
+  store: new SequelizeStore({
+    db: model.sequelize,
+    checkExpirationInterval: 15 * 60000,
+    expiration: 60 * 60000
+  }),
+  secret: '38-38-40-40-37-39-37-39-66-65-13',
+  saveUninitialized: false,
+  resave: false,
 }));
 
 // Check If Session
 app.use((req, res, next) => {
-    if(req.session.uuid) {
-        res.locals.uuid = true;
-        next();
-    } else {
-        next();
-    }
+  if (req.session.uuid) {
+    res.locals.uuid = true;
+    next();
+  } else {
+    next();
+  }
 });
 
 // Views
