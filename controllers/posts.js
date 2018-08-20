@@ -39,6 +39,7 @@ router.get('/', (req, res) => {
       });
     });
 });
+
 router.get('/new', (req, res) => {
   if (req.session.uuid) {
     res.render('posts_new');
