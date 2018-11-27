@@ -41,5 +41,5 @@ app.use(express.static('public'));
 app.use(require('./controllers'));
 
 app.listen(myport, () =>
-    console.log(`Now listening on port ${myport}`)
+  console.log(`Now listening on port ${myport}`)
 );
