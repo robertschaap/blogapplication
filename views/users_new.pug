@@ -29,11 +29,9 @@ block content
           script(language='javascript' type='text/javascript').
             function check(input) {
               if (input.value != document.getElementById('password').value) {
-                console.log('2')
                 input.setCustomValidity('Please make sure your passwords match.');
                 input.reportValidity();
               } else {
-                console.log('3')
                 input.setCustomValidity('');
               }
             }
