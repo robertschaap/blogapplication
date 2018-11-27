@@ -1,9 +1,9 @@
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize('blogapp', process.env.POSTGRES_USER, null, {
-    host: 'localhost',
-    dialect: 'postgres',
-    operatorsAliases: false,
-    logging: false
+  host: 'localhost',
+  dialect: 'postgres',
+  operatorsAliases: false,
+  logging: false
 });
 
 // Model Definitions
@@ -20,7 +20,6 @@ Comments.belongsTo(Users);
 
 Posts.hasMany(Comments);
 Comments.belongsTo(Posts);
-
 
 // Exports
 exports.sequelize = sequelize;
