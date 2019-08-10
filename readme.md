@@ -21,4 +21,4 @@ Express-Session | Connect-Session-Sequelize | Body-Parser | BCrypt | Validatejs
 Please feel free to download or clone the repository. Modules are all included in the package.json however you will need to have either PostgreSQL installed or make modifications if you're using a different dialect. This can be done in models/index.js. The tests.js file in the same folder will auto-populate a number of posts. Just make sure you have a database called 'blogapp' in place. A text avatar and post banner have been included in the main folder.
 
 - Start up PostgreSQL
-- run `node app.js`
+- run `npm start`
